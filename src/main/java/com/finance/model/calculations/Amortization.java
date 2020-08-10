@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Amortization {
 
-    private BigDecimal apyDivByPeriod;
+    private BigDecimal apyDivByMonth;
     private BigDecimal amt;
     private int period;
 
@@ -15,15 +15,15 @@ public class Amortization {
 
         this.amt = new BigDecimal(amt);
         this.period = period;
-        this.apyDivByPeriod = new BigDecimal(apy)
+        this.apyDivByMonth = new BigDecimal(apy)
                 .divide(new BigDecimal(12), 10, RoundingMode.HALF_UP);
     }
 
     private BigDecimal getPmt() {
 
-        BigDecimal numerator =  amt.multiply(this.apyDivByPeriod);
+        BigDecimal numerator =  amt.multiply(this.apyDivByMonth);
 
-        BigDecimal innerTerm = BigDecimal.ONE.add(this.apyDivByPeriod).pow(this.period);
+        BigDecimal innerTerm = BigDecimal.ONE.add(this.apyDivByMonth).pow(this.period);
         BigDecimal denominator = BigDecimal.ONE.subtract(BigDecimal.ONE
                 .divide(innerTerm, 10, RoundingMode.HALF_UP));
 
@@ -37,7 +37,7 @@ public class Amortization {
 
         for (int i=1; i <= this.period; i++ ) {
 
-            BigDecimal interestThisPeriod = balance.multiply(this.apyDivByPeriod);
+            BigDecimal interestThisPeriod = balance.multiply(this.apyDivByMonth);
             BigDecimal principalThisPeriod = this.getPmt().subtract(interestThisPeriod);
             BigDecimal endBalance = balance.subtract(principalThisPeriod);
 
