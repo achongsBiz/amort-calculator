@@ -59,4 +59,4 @@ Sample call:
 
 ## Visuals
 
-![screenshot](https://github.com/achongsBiz/readme-files/blob/master/tvm-calculator/tvm1.PNG)
+![screenshot](https://github.com/achongsBiz/readme-files/blob/master/tvm-calculator/tvm-1.PNG)
