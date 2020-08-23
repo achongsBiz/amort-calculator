@@ -4,7 +4,6 @@ public class NPVIn {
 
     private String [] cashFlows;
     private String rate;
-    private String period;
 
     public String getRate() {
         return rate;
@@ -22,11 +21,4 @@ public class NPVIn {
         this.cashFlows = cashFlows;
     }
 
-    public String getPeriod() {
-        return period;
-    }
-
-    public void setPeriod(String period) {
-        this.period = period;
-    }
 }
