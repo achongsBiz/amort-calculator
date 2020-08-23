@@ -44,7 +44,7 @@ public class MainController {
         CashFlowSingleValue cashFlowSingleValue = new CashFlowSingleValue(new BigDecimal(presentValue), interest, period);
         return new FVOut(cashFlowSingleValue.getFV());
     }
-//test
+
     @RequestMapping(path="/amort", method = RequestMethod.GET)
     public List<AmortEntry> buildAmortSchedule(@RequestParam  double apy,
                                                @RequestParam double loanAmount,
