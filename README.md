@@ -4,7 +4,7 @@
 This is an API microservice that performs Time Value of Money calculations. It supports 
 the following calls:
 
-##Amortization Schedule (GET): 
+## Amortization Schedule (GET): 
 Builds an amortization schedule
 Sample call: 
 
@@ -13,7 +13,7 @@ Sample call:
 * loamAmount: The loan amount.
 * period: The term of the loan in months 
 
-##Net Present Value (POST): 
+## Net Present Value (POST): 
 Returns the NPV given an array of cash flows
   Sample call: 
   
@@ -26,7 +26,7 @@ Returns the NPV given an array of cash flows
 * **rate**: The discount rate, in this example 5.7%
 * **cashFlows**: An array containing future cash flows in chronological order.
 
-##Present Value (GET): 
+## Present Value (GET): 
 Returns the present value of a single future cash flow
   
 Sample call: 
@@ -37,7 +37,7 @@ Sample call:
 * **futureValue**: The cash flow's future period at the specified period.
 * **period**: The period in the future corresponding to the futureValue.
     
-##Future Value (GET): 
+## Future Value (GET): 
 Returns the future value of a single cash flow
   
 Sample call:  
