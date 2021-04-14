@@ -10,7 +10,7 @@ Sample call:
 
 ```/api/amort?apy=0.052&loanAmount=75000&period=360```
 * apy: Annual Percentage Yield. In this example, an apy of 5.2% is used.
-* loamAmount: The loan amount.
+* loanAmount: The loan amount.
 * period: The term of the loan in months 
 
 ## Net Present Value (POST): 
