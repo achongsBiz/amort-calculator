@@ -56,6 +56,7 @@ Sample call:
 
 * Testing:
     * Unit Tests through JUnit
+    * Endpoint Testing through RestAssured
 
 ## Visuals
 
