@@ -14,11 +14,6 @@ function getData() {
     const apy = parseFloat(document.getElementById('apy').value) / 100;
     const numPeriods = document.getElementById('periods').value;
 
-    console.log(loanAmount)
-    console.log(apy)
-    console.log(numPeriods)
-
-
     fetch(`/api/amort?apy=${apy}&loanAmount=${loanAmount}&period=${numPeriods}`)
     .then(
         response => response.json()
@@ -34,11 +29,31 @@ function buildTable(dataArr) {
 
     dataArr.forEach(element => {
         
-        const container = document.createElement('p');
-        container.innerText = element;
+        const container = document.createElement('tr');
+
+        const periodContainer = document.createElement('td');
+        periodContainer.innerText = element.period;
+        container.append(periodContainer);
+
+        const begBalContainer = document.createElement('td');
+        begBalContainer.innerText = element.begBalance;
+        container.append(begBalContainer);
+
+        const principContainer = document.createElement('td');
+        principContainer.innerText = element.principal;
+        container.append(principContainer);
+
+        const intContainer = document.createElement('td');
+        intContainer.innerText = element.interest;
+        container.append(intContainer);
+
+        const endBalContainer= document.createElement('td');
+        endBalContainer.innerText = element.endBalance;
+        container.append(endBalContainer);
+
         parent.appendChild(container)
     });
-
 }
+
 
 

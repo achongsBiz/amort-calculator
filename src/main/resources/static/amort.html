@@ -1,17 +1,29 @@
 <html>
 
+<head>
+    <title>Calculator</title>
+    <link rel='stylesheet' href='style/style.css'></link>
+</head>
+
 <body>
 
 <div>
-    Loan Amount: <input id="loan-amount" type="text" /> <br>
-    APY: <input id="apy" type="text" /> <br>
-    Number of Periods: <input id="periods" type="text" /> <br>
 
-    <input type="button" id="submit" value='Calculate'/>
+    <div id ='controls'>
+        Loan Amount: <input id="loan-amount" type="text" /> 
+        APY: <input id="apy" type="text" /> 
+        Number of Periods: <input id="periods" type="text" />
+        <input type="button" id="submit" value='Calculate'/>
+    </div>
+    <br>
+    <div>
+        <table id='data'>
+            <tr>
+                <th>Period</th><th>Beginning Balance</th><th>Principal</th><th>Interest</th><th>Ending Balance</th>
+            </tr>
 
-    <div id='data'>
-
-        
+        </table>
+    
     </div>
 
 </div>
