@@ -1,8 +1,10 @@
-# TVM Calculator
+# Amortization Schedule Builder
 
 ## Introduction
-This is an API microservice that performs Time Value of Money calculations. It supports 
-the following calls:
+This is an API microservice that builds an amortization schedule
+
+![screenshot](https://github.com/achongsBiz/readme-files/blob/master/tvm-calculator/amort.png)
+
 
 ## Amortization Schedule (GET): 
 Builds an amortization schedule
@@ -11,42 +13,13 @@ Sample call:
 ```/api/amort?apy=0.052&loanAmount=75000&period=360```
 * apy: Annual Percentage Yield. In this example, an apy of 5.2% is used.
 * loanAmount: The loan amount.
-* period: The term of the loan in months 
+* period: The term of the loan in months. In this example, 360 months.
 
-## Net Present Value (POST): 
-Returns the NPV given an array of cash flows
-  Sample call: 
-  
-  ```/api/npv```
-    
-* The body of the request is in the following format: 
+## Web Interface
+A simple web interface that consumes the above endpoint is available through:
 
-```{"rate" : "5.7", "cashFlows" : ["500", "200", "400"], "period" : 10}```
+```/amort.html```
 
-* **rate**: The discount rate, in this example 5.7%
-* **cashFlows**: An array containing future cash flows in chronological order.
-
-## Present Value (GET): 
-Returns the present value of a single future cash flow
-  
-Sample call: 
-
-```/api/pv?interest=3.2&futureValue=1000&period=3```
-
-* **interest**: In this example, an interest of 3.2%.
-* **futureValue**: The cash flow's future period at the specified period.
-* **period**: The period in the future corresponding to the futureValue.
-    
-## Future Value (GET): 
-Returns the future value of a single cash flow
-  
-Sample call:  
-
-```/api/fv?interest=3.2&presentValue=1000&period=3```
-* **interest**: In this example, an interest of 3.2%.
-* **presentValue**: The cash flow's current value.
-* **period**: The number of periods to project the presentValue.
-    
 
 ## Architecture
 
@@ -57,7 +30,3 @@ Sample call:
 * Testing:
     * Unit Tests through JUnit
     * Endpoint Testing through RestAssured
-
-## Visuals
-
-![screenshot](https://github.com/achongsBiz/readme-files/blob/master/tvm-calculator/tvm-1.PNG)
