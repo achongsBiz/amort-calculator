@@ -19,13 +19,61 @@ function getData() {
         response => response.json()
     )
     .then(
-        data => buildTable(data)
+        (data)=> {
+                toggleDataSection("block");
+                notify("");
+                buildTable(data);
+        }
+    ). catch (
+        ()=>{
+            toggleDataSection("none");
+            notify("One or more of the inputs might be invalid. Read the instructions and try again.");
+        }
     );
 }
+
+function notify(message) {
+    const noticeBox = document.getElementById("notification");
+    noticeBox.innerText = message;
+
+}
+
+function toggleDataSection(toggleValue) {
+
+    const data = document.getElementById("data");
+    data.style.display=toggleValue;
+
+}
+
 
 function buildTable(dataArr) {
 
     const parent = document.getElementById('data');
+    parent.innerHTML = "";
+
+    const header = document.createElement('tr');
+
+    const periodHeader = document.createElement("th");
+    periodHeader.innerText = "Period";
+    header.appendChild(periodHeader);
+
+    const begBalanceHeader = document.createElement("th");
+    begBalanceHeader.innerText = "Beginning Balance";
+    header.appendChild(begBalanceHeader);
+
+    const principalHeader = document.createElement("th");
+    principalHeader.innerText = "Principal";
+    header.appendChild(principalHeader);
+
+    const interestHeader = document.createElement("th");
+    interestHeader.innerText = "Interest";
+    header.appendChild(interestHeader);
+
+    const endBalanceHeader = document.createElement("th");
+    endBalanceHeader.innerText = "Ending Balance";
+    header.appendChild(endBalanceHeader);
+
+    parent.append(header);
 
     dataArr.forEach(element => {
         

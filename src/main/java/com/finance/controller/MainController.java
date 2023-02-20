@@ -8,7 +8,9 @@ import com.finance.model.input.NPVIn;
 import com.finance.model.output.FVOut;
 import com.finance.model.output.NPVOut;
 import com.finance.model.output.PVOut;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -22,6 +24,7 @@ public class MainController {
                                   @RequestParam double futureValue,
                                   @RequestParam int period)
     {
+
         CashFlowSingleValue cashFlowSingleValue = new CashFlowSingleValue(new BigDecimal(futureValue), interest, period);
         return new PVOut(cashFlowSingleValue.getPV());
     }
@@ -51,6 +54,10 @@ public class MainController {
                                                @RequestParam int period,
                                                @RequestParam(defaultValue="$") char sign)
     {
+
+        if(loanAmount <= 0 || apy <= 0 || period <= 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid data");
+        }
 
         Amortization amortization = new Amortization(apy, loanAmount, period);
         List<AmortEntry> schedule = amortization.createSchedule(sign);

@@ -7,20 +7,33 @@
 
 <body>
 
+<h2>Amortization Calculator</h2>
+
+<div id="instructions">
+    <p>This page generates an amortization schedule given three inputs: The loan amount, the APY,
+    and the number of periods.</p>
+    <ul>
+        <li>The APY should be a whole number (5.1% is entered as 5.1)</li>
+        <li>The number of periods is in months</li>
+    </ul>
+</p>
+</div>
+
 <div>
 
     <div id ='controls'>
         Loan Amount: <input id="loan-amount" type="text" /> 
         APY: <input id="apy" type="text" /> 
         Number of Periods: <input id="periods" type="text" />
-        <input type="button" id="submit" value='Calculate'/>
+        <input tyupe="button" id="submit" value='Calculate'/>
     </div>
     <br>
+
+    <div id="notification"></div>
+
     <div>
         <table id='data'>
-            <tr>
-                <th>Period</th><th>Beginning Balance</th><th>Principal</th><th>Interest</th><th>Ending Balance</th>
-            </tr>
+
 
         </table>
     

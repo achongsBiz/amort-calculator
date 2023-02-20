@@ -8,9 +8,25 @@ td {
     text-align: center;
 }
 
-.controls {
+#controls {
     display: flex;
+    margin: 20px;
+}
 
+#notification {
+    color: red;
+    margin: 20px;
+}
+
+#instructions {
+    border: 1px dashed black;
+    width: 800px;
+        margin: 20px;
+}
+
+#data {
+    display: hidden;
+    border: 0px;
 }
 
 input {
