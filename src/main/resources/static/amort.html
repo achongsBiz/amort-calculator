@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Calculator</title>
+    <title>Amortization</title>
     <link rel='stylesheet' href='style/style.css'></link>
 </head>
 
@@ -21,7 +21,7 @@
 
 <div>
 
-    <div id ='controls'>
+    <div id ='inputs'>
         Loan Amount: <input class="data-entry" id="loan-amount" type="text" /> 
         APY: <input class="data-entry" id="apy" type="text" /> 
         Number of Periods: <input class="data-entry" id="periods" type="text" />
@@ -35,13 +35,14 @@
         <button id="goNextBtn" class="control invisible">Next</button>
         <button id="goPreviousBtn" class="control invisible">Prev</button>
         <button id="goLastBtn" class="control invisible">Last Page</button>
+        <span class="control invisible">Target Page:</span> <input id="targetPage" class="control invisible"/>
+        <input id="pageCount" class="control invisible" disabled/>
+        <button id="goToPageBtn" class="control invisible">Go</button>
     </div>
 
     <div id="notification"></div>
 
-    <div id="data">
-    
-    </div>
+    <div id="data"></div>
 
 </div>
 

@@ -16,14 +16,18 @@ table,th,tr,td {
 .invisible{
     visibility: hidden;
 }
-  
+ 
+#pagination > span {
+    margin-left: 20px;
+    margin-right: 20px;
+}
 
 td {
     padding: 10px;
     text-align: center;
 }
 
-#controls {
+#inputs {
     display: flex;
     margin: 20px;
 }

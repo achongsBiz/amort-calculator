@@ -24,8 +24,7 @@ public class AppController {
         }
 
         Amortization amortization = new Amortization(apy, loanAmount, period);
-        List<AmortEntry> schedule = amortization.createSchedule(sign);
 
-        return schedule;
+        return amortization.createSchedule(sign);
     }
 }

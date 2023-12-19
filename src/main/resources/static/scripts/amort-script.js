@@ -19,6 +19,9 @@ document.addEventListener(
         const lastBtn = document.getElementById("goLastBtn");
         lastBtn.addEventListener("click", goToLastPage);
 
+        const gotoBtn = document.getElementById("goToPageBtn");
+        gotoBtn.addEventListener("click", goToPage);
+
     }
 
 )
@@ -69,7 +72,7 @@ function getData() {
                 }
             }
 
-            const parent = document.getElementById('data');
+            updatePageCount();
             goToFirstPage();
 
         }
@@ -112,6 +115,30 @@ function goToPrevious() {
 
     renderPage(pages[--currentPage]);
 
+}
+
+
+function goToPage() {
+    const pageCountInput = document.getElementById("pageCount");
+    const pageTotal = parseInt(pageCountInput.value);
+
+    const targetPageInput = document.getElementById("targetPage");
+    const targetPage = parseInt(targetPageInput.value);
+
+    if(targetPage > pageTotal || targetPage < 1) {
+        window.alert("Invalid page value.");
+        return;
+    }
+
+    currentPage = targetPage - 1;
+
+    renderPage(pages[currentPage]);
+
+}
+
+function updatePageCount() {
+    const pageCountInput = document.getElementById("pageCount");
+    pageCountInput.value = pages.length;
 }
 
 
