@@ -1,11 +1,26 @@
+let currentPage = 0;
+let pages = [];
+
 document.addEventListener(
     'DOMContentLoaded',
-    () => {
-        
+    () => {     
         const calcBtn = document.getElementById('submit');
         calcBtn.addEventListener('click', getData);
+                                              
+        const firstBtn = document.getElementById("goToFirstBtn");
+        firstBtn.addEventListener("click", goToFirstPage);
+
+        const nextBtn = document.getElementById("goNextBtn");
+        nextBtn.addEventListener("click", goToNext);
+
+        const prevBtn = document.getElementById("goPreviousBtn");
+        prevBtn.addEventListener("click", goToPrevious);
+
+        const lastBtn = document.getElementById("goLastBtn");
+        lastBtn.addEventListener("click", goToLastPage);
 
     }
+
 )
 
 function getData() {
@@ -14,23 +29,100 @@ function getData() {
     const apy = parseFloat(document.getElementById('apy').value) / 100;
     const numPeriods = document.getElementById('periods').value;
 
+    pages=[];
+
     fetch(`/api/amort?apy=${apy}&loanAmount=${loanAmount}&period=${numPeriods}`)
     .then(
         response => response.json()
     )
     .then(
         (data)=> {
-                toggleDataSection("block");
-                notify("");
-                buildTable(data);
+            toggleDataSection("block");
+            notify("");
+            turnOnControls();
+            let temp = [];
+                    
+            if(data.length < 11) {  
+                pages.push( buildTable(data) );
+
+            } else {        
+                let itemsProcessed = 0;
+    
+                for(let i=0; (i < data.length) || !(data.length - itemsProcessed < 10); i++) {
+                    temp.push(data[i]);
+                    itemsProcessed++;
+    
+                    // 10 items per page
+                    if(temp.length === 10) {
+                        pages.push( buildTable(temp) );
+                        temp = [];
+                    }
+                }
+    
+                // push remaining items
+                for(let i= data[data.length-10]; i < data.length; i++) {
+                    temp = data[i];
+                }
+    
+                if(temp.length != 0) {
+                    pages.push( buildTable(temp) );
+                }
+            }
+
+            const parent = document.getElementById('data');
+            goToFirstPage();
+
         }
-    ). catch (
+    ).catch (
         ()=>{
             toggleDataSection("none");
             notify("One or more of the inputs might be invalid. Read the instructions and try again.");
+            
         }
+
     );
 }
+
+function goToFirstPage() {
+    renderPage(pages[0]);
+    currentPage = 0;
+
+}
+
+
+function goToLastPage() {
+    renderPage(pages[pages.length-1]);
+    currentPage = pages.length-1;
+
+}
+
+function goToNext() {
+    if(currentPage === pages.length - 1) {
+        return;
+    } 
+
+    renderPage(pages[++currentPage]);
+
+}
+
+function goToPrevious() {
+    if(currentPage === 0) {
+        return;
+    } 
+
+    renderPage(pages[--currentPage]);
+
+}
+
+
+function renderPage(page) {
+    const parent = document.getElementById('data');
+    parent.innerHTML = "";
+
+    parent.appendChild(page);
+
+}
+
 
 function notify(message) {
     const noticeBox = document.getElementById("notification");
@@ -39,17 +131,24 @@ function notify(message) {
 }
 
 function toggleDataSection(toggleValue) {
-
     const data = document.getElementById("data");
     data.style.display=toggleValue;
 
 }
 
+function turnOnControls() {
+    const controls = document.querySelectorAll(".control");
+
+    controls.forEach( 
+        (control) => { 
+            control.classList.remove("invisible");
+        } 
+    );
+}
+
 
 function buildTable(dataArr) {
-
-    const parent = document.getElementById('data');
-    parent.innerHTML = "";
+    const pageTable = document.createElement('table');
 
     const header = document.createElement('tr');
 
@@ -73,10 +172,12 @@ function buildTable(dataArr) {
     endBalanceHeader.innerText = "Ending Balance";
     header.appendChild(endBalanceHeader);
 
-    parent.append(header);
+    pageTable.append(header);
 
-    dataArr.forEach(element => {
-        
+    for(let i=0; i < dataArr.length; i++) {
+
+        const element = dataArr[i];
+
         const container = document.createElement('tr');
 
         const periodContainer = document.createElement('td');
@@ -99,8 +200,11 @@ function buildTable(dataArr) {
         endBalContainer.innerText = element.endBalance;
         container.append(endBalContainer);
 
-        parent.appendChild(container)
-    });
+        pageTable.appendChild(container)
+    }
+
+    return pageTable;
+    
 }
 
 

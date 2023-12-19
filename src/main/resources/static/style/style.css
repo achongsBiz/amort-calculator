@@ -3,6 +3,21 @@ table,th,tr,td {
     border-collapse: collapse;
 }
 
+.data-entry {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+.visible {
+    visibility: visible;
+}
+  
+.invisible{
+    visibility: hidden;
+}
+  
+
 td {
     padding: 10px;
     text-align: center;
@@ -21,7 +36,8 @@ td {
 #instructions {
     border: 1px dashed black;
     width: 800px;
-        margin: 20px;
+    margin: 20px;
+    padding: 20px;
 }
 
 #data {
