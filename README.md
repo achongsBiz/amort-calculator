@@ -1,7 +1,7 @@
 # Amortization Schedule Builder
 
 ## Introduction
-This is an API microservice that builds an amortization schedule
+This is a microservice with a simple API designed to build amortization schedules.
 
 ![screenshot](https://github.com/achongsBiz/readme-files/blob/master/tvm-calculator/amort.png)
 
@@ -16,10 +16,9 @@ Sample call:
 * period: The term of the loan in months. In this example, 360 months.
 
 ## Web Interface
-A simple web interface that consumes the above endpoint is available through:
+A simple web interface that consumes the above endpoint is available:
 
 ```/amort.html```
-
 
 ## Architecture
 

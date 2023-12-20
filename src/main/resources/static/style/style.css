@@ -22,6 +22,11 @@ table,th,tr,td {
     margin-right: 20px;
 }
 
+th {
+    padding: 10px;
+    text-align: center;
+}
+
 td {
     padding: 10px;
     text-align: center;

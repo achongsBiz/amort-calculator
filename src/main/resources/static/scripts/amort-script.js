@@ -4,8 +4,8 @@ let pages = [];
 document.addEventListener(
     'DOMContentLoaded',
     () => {     
-        const calcBtn = document.getElementById('submit');
-        calcBtn.addEventListener('click', getData);
+        const calcBtn = document.getElementById("submit");
+        calcBtn.addEventListener("click", getData);
                                               
         const firstBtn = document.getElementById("goToFirstBtn");
         firstBtn.addEventListener("click", goToFirstPage);
@@ -28,9 +28,9 @@ document.addEventListener(
 
 function getData() {
 
-    const loanAmount = document.getElementById('loan-amount').value;
-    const apy = parseFloat(document.getElementById('apy').value) / 100;
-    const numPeriods = document.getElementById('periods').value;
+    const loanAmount = document.getElementById("loan-amount").value;
+    const apy = parseFloat(document.getElementById("apy").value) / 100;
+    const numPeriods = document.getElementById("periods").value;
 
     pages=[];
 
@@ -143,7 +143,7 @@ function updatePageCount() {
 
 
 function renderPage(page) {
-    const parent = document.getElementById('data');
+    const parent = document.getElementById("data");
     parent.innerHTML = "";
 
     parent.appendChild(page);
@@ -175,9 +175,9 @@ function turnOnControls() {
 
 
 function buildTable(dataArr) {
-    const pageTable = document.createElement('table');
+    const pageTable = document.createElement("table");
 
-    const header = document.createElement('tr');
+    const header = document.createElement("tr");
 
     const periodHeader = document.createElement("th");
     periodHeader.innerText = "Period";
@@ -205,25 +205,25 @@ function buildTable(dataArr) {
 
         const element = dataArr[i];
 
-        const container = document.createElement('tr');
+        const container = document.createElement("tr");
 
-        const periodContainer = document.createElement('td');
+        const periodContainer = document.createElement("td");
         periodContainer.innerText = element.period;
         container.append(periodContainer);
 
-        const begBalContainer = document.createElement('td');
+        const begBalContainer = document.createElement("td");
         begBalContainer.innerText = element.begBalance;
         container.append(begBalContainer);
 
-        const principContainer = document.createElement('td');
+        const principContainer = document.createElement("td");
         principContainer.innerText = element.principal;
         container.append(principContainer);
 
-        const intContainer = document.createElement('td');
+        const intContainer = document.createElement("td");
         intContainer.innerText = element.interest;
         container.append(intContainer);
 
-        const endBalContainer= document.createElement('td');
+        const endBalContainer= document.createElement("td");
         endBalContainer.innerText = element.endBalance;
         container.append(endBalContainer);
 
