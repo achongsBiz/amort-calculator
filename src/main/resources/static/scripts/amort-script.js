@@ -250,7 +250,6 @@ function buildTable(dataArr) {
     
 }
 
-// ^[0-9]*$
 function regexMatch(pattern, target) {
     let re = new RegExp(pattern);
     return re.test(target);
