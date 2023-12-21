@@ -36,13 +36,23 @@ function getData() {
 
     fetch(`/api/amort?apy=${apy}&loanAmount=${loanAmount}&period=${numPeriods}`)
     .then(
-        response => response.json()
+        (response) => {
+
+            if (!response.ok) {
+                return Promise.reject("invalid data");
+            }
+
+            return response.json();
+        }
     )
     .then(
         (data)=> {
-            toggleDataSection("block");
+
+            toggleSection("data", true);
+            toggleSection("pagination", true);
+
             notify("");
-            turnOnControls();
+            //turnOnControls();
             let temp = [];
                     
             if(data.length < 11) {  
@@ -78,7 +88,9 @@ function getData() {
         }
     ).catch (
         ()=>{
-            toggleDataSection("none");
+
+            toggleSection("data", false);
+            toggleSection("pagination", false);
             notify("One or more of the inputs might be invalid. Read the instructions and try again.");
             
         }
@@ -125,7 +137,7 @@ function goToPage() {
     const targetPageInput = document.getElementById("targetPage");
     const targetPage = parseInt(targetPageInput.value);
 
-    if(targetPage > pageTotal || targetPage < 1) {
+    if(!regexMatch("^[0-9]*$", targetPage) || targetPageInput.value === undefined || targetPage > pageTotal || targetPage < 1) {
         window.alert("Invalid page value.");
         return;
     }
@@ -157,20 +169,24 @@ function notify(message) {
 
 }
 
+
+function toggleSection(elementName, activate) {
+
+    const section = document.getElementById(elementName);
+
+    section.style.display = activate === true ? "block" : "none";
+
+}
+
 function toggleDataSection(toggleValue) {
     const data = document.getElementById("data");
     data.style.display=toggleValue;
 
 }
 
-function turnOnControls() {
-    const controls = document.querySelectorAll(".control");
-
-    controls.forEach( 
-        (control) => { 
-            control.classList.remove("invisible");
-        } 
-    );
+function togglePagination(toggleValue) {
+    const data = document.getElementById("pagination");
+    data.style.display=toggleValue;
 }
 
 
@@ -233,6 +249,12 @@ function buildTable(dataArr) {
     return pageTable;
     
 }
+
+// ^[0-9]*$
+function regexMatch(pattern, target) {
+    let re = new RegExp(pattern);
+    return re.test(target);
+ }
 
 
 

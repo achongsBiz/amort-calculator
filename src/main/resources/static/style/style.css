@@ -50,8 +50,12 @@ td {
 }
 
 #data {
-    display: hidden;
+    display: none;
     border: 0px;
+}
+
+#pagination{
+    display: none;
 }
 
 input {
