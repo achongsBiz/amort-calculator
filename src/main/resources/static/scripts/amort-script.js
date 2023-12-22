@@ -2,7 +2,7 @@ let currentPage = 0;
 let pages = [];
 
 document.addEventListener(
-    'DOMContentLoaded',
+    "DOMContentLoaded",
     () => {     
         const calcBtn = document.getElementById("submit");
         calcBtn.addEventListener("click", getData);
