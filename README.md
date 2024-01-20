@@ -23,4 +23,4 @@ A simple web interface that consumes the above endpoint is available:
 
 * Server:
     * SpringBoot (in Java)
-    * Maven
+    * Static front end with CSS, HTML, JavaScript
