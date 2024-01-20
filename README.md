@@ -21,6 +21,5 @@ A simple web interface that consumes the above endpoint is available:
 
 ## Architecture
 
-* Server:
-    * SpringBoot (in Java)
-    * Static front end with CSS, HTML, JavaScript
+* SpringBoot (in Java)
+* Static front end with CSS, HTML, JavaScript
